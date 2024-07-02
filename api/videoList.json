@@ -1,0 +1,204 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "title": "Amazing Nature",
+      "url": "/video_clips/nature1.mp4",
+      "coverImage": "/covers/nature1.jpg",
+      "views": 400,
+      "likes": 300,
+      "hearts": 150,
+      "uploader": "NatureLover"
+    },
+    {
+      "id": "2",
+      "title": "Urban Wonders",
+      "url": "/video_clips/city1.mp4",
+      "coverImage": "/covers/city1.jpg",
+      "views": 620,
+      "likes": 350,
+      "hearts": 210,
+      "uploader": "CityExplorer"
+    },
+    {
+      "id": "3",
+      "title": "Ocean Depths",
+      "url": "/video_clips/ocean1.mp4",
+      "coverImage": "/covers/ocean1.jpg",
+      "views": 520,
+      "likes": 415,
+      "hearts": 325,
+      "uploader": "SeaAdventurer"
+    },
+    {
+      "id": "4",
+      "title": "Mountain Heights",
+      "url": "/video_clips/mountain1.mp4",
+      "coverImage": "/covers/mountain1.jpg",
+      "views": 290,
+      "likes": 190,
+      "hearts": 95,
+      "uploader": "Mountaineer"
+    },
+    {
+      "id": "5",
+      "title": "Desert Solitude",
+      "url": "/video_clips/desert1.mp4",
+      "coverImage": "/covers/desert1.jpg",
+      "views": 350,
+      "likes": 230,
+      "hearts": 115,
+      "uploader": "DesertWalker"
+    },
+    {
+      "id": "6",
+      "title": "Lush Forests",
+      "url": "/video_clips/forest1.mp4",
+      "coverImage": "/covers/forest1.jpg",
+      "views": 475,
+      "likes": 340,
+      "hearts": 180,
+      "uploader": "ForestGuardian"
+    },
+    {
+      "id": "7",
+      "title": "Arctic Beauty",
+      "url": "/video_clips/arctic1.mp4",
+      "coverImage": "/covers/arctic1.jpg",
+      "views": 385,
+      "likes": 265,
+      "hearts": 140,
+      "uploader": "PolarExplorer"
+    },
+    {
+      "id": "8",
+      "title": "Ancient Ruins",
+      "url": "/video_clips/ruins1.mp4",
+      "coverImage": "/covers/ruins1.jpg",
+      "views": 465,
+      "likes": 312,
+      "hearts": 167,
+      "uploader": "Historian"
+    },
+    {
+      "id": "9",
+      "title": "City Nightlife",
+      "url": "/video_clips/citynight1.mp4",
+      "coverImage": "/covers/citynight1.jpg",
+      "views": 580,
+      "likes": 450,
+      "hearts": 230,
+      "uploader": "NightOwl"
+    },
+    {
+      "id": "10",
+      "title": "Wildlife Wonders",
+      "url": "/video_clips/wildlife1.mp4",
+      "coverImage": "/covers/wildlife1.jpg",
+      "views": 390,
+      "likes": 310,
+      "hearts": 150,
+      "uploader": "NatureWatcher"
+    },
+    {
+      "id": "11",
+      "title": "River Rapids",
+      "url": "/video_clips/river1.mp4",
+      "coverImage": "/covers/river1.jpg",
+      "views": 340,
+      "likes": 275,
+      "hearts": 135,
+      "uploader": "RaftingEnthusiast"
+    },
+    {
+      "id": "12",
+      "title": "Sunny Beaches",
+      "url": "/video_clips/beach1.mp4",
+      "coverImage": "/covers/beach1.jpg",
+      "views": 630,
+      "likes": 480,
+      "hearts": 300,
+      "uploader": "BeachLover"
+    },
+    {
+      "id": "13",
+      "title": "Deep Space",
+      "url": "/video_clips/space1.mp4",
+      "coverImage": "/covers/space1.jpg",
+      "views": 410,
+      "likes": 360,
+      "hearts": 220,
+      "uploader": "Astronomer"
+    },
+    {
+      "id": "14",
+      "title": "Underground Caves",
+      "url": "/video_clips/cave1.mp4",
+      "coverImage": "/covers/cave1.jpg",
+      "views": 320,
+      "likes": 210,
+      "hearts": 100,
+      "uploader": "CaveExplorer"
+    },
+    {
+      "id": "15",
+      "title": "Robotic Futures",
+      "url": "/video_clips/robot1.mp4",
+      "coverImage": "/covers/robot1.jpg",
+      "views": 490,
+      "likes": 410,
+      "hearts": 325,
+      "uploader": "TechGeek"
+    },
+    {
+      "id": "16",
+      "title": "Ancient Forests",
+      "url": "/video_clips/ancientforest1.mp4",
+      "coverImage": "/covers/ancientforest1.jpg",
+      "views": 470,
+      "likes": 360,
+      "hearts": 190,
+      "uploader": "EcoWarrior"
+    },
+    {
+      "id": "17",
+      "title": "Storm Chasing",
+      "url": "/video_clips/storm1.mp4",
+      "coverImage": "/covers/storm1.jpg",
+      "views": 540,
+      "likes": 505,
+      "hearts": 250,
+      "uploader": "StormChaser"
+    },
+    {
+      "id": "18",
+      "title": "Hidden Waterfalls",
+      "url": "/video_clips/waterfall1.mp4",
+      "coverImage": "/covers/waterfall1.jpg",
+      "views": 410,
+      "likes": 350,
+      "hearts": 175,
+      "uploader": "Explorer"
+    },
+    {
+      "id": "19",
+      "title": "Cityscapes",
+      "url": "/video_clips/cityscape1.mp4",
+      "coverImage": "/covers/cityscape1.jpg",
+      "views": 510,
+      "likes": 455,
+      "hearts": 305,
+      "uploader": "UrbanArtist"
+    },
+    {
+      "id": "20",
+      "title": "The Art of Dance",
+      "url": "/video_clips/dance1.mp4",
+      "coverImage": "/covers/dance1.jpg",
+      "views": 620,
+      "likes": 530,
+      "hearts": 295,
+      "uploader": "DanceMaster"
+    }
+  ]
+}
