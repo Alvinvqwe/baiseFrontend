@@ -5,7 +5,7 @@ export const videoSource = {
   title: "Example Video",
   sources: [
     {
-      src: "/test.mp4",
+      src: "http://www.baisehub.com:7000/video/test.mp4",
       type: "video/mp4",
       size: 1080,
     },

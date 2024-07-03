@@ -2,12 +2,12 @@
 export interface Video {
   id: string;
   title: string;
-  url: string;
+  video_url: string;
   coverImage: string;
   views: number;
   likes: number;
   hearts: number;
-  uploader: string;
+  uploader_id: number;
 }
 
 export interface FetchVideosResponse {

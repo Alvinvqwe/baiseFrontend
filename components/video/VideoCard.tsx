@@ -13,32 +13,40 @@ import { Video } from "@/types/api-types";
 
 export const VideoCard: React.FC<{ video: Video }> = ({ video }) => {
   return (
-    <div className="w-full h-fit flex flex-col items-center justify-center">
+    <div className="relative w-full h-72 flex flex-col items-center justify-center">
       <Suspense fallback={<Skeleton className="w-full h-full" />}>
         <Link
-          href={`/Video/${video.id}`}
+          href={`/video/${video.id}`}
           key={video.id}
-          className="w-full h-full"
+          className="w-full h-full relative overflow-hidden"
         >
           <HoverVideoPlayer
-            videoSrc={video.url}
+            videoSrc={
+              process.env.NEXT_PUBLIC_BASE_URL +
+              "/video/shortClips/" +
+              video.video_url
+            }
             pausedOverlay={
               <Image
-                src={video.coverImage}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/video/image/${video.video_url}`}
                 alt="thumbnail"
-                width={0}
-                height={0}
-                style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                // width={0}
+                // height={0}
+                // style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                layout="fill"
+                objectFit="cover"
                 priority
                 unoptimized
               />
             }
-            loadingOverlay={<Skeleton className="w-[320px] h-[200px]" />}
+            loadingOverlay={<Skeleton className="w-full h-full" />}
             preload="auto"
             muted={true}
             loop={true}
             volume={0.8}
-            className="w-full h-fit"
+            // className="w-full h-[200px]"
+            className="w-full max-h-full object-contain bg-white items-center justify-center" // Tailwind CSS 类
+            //style={{ objectFit: "contain" }} // 内联样式
             restartOnPaused
           />
         </Link>
@@ -55,7 +63,7 @@ export const VideoCard: React.FC<{ video: Video }> = ({ video }) => {
               height={20}
               color="black"
             />
-            {video.uploader}
+            {video.uploader_id}
           </Link>
           <div className="text-sm font-medium text-gray-900 flex justify-between w-[130px] h-[20px]">
             <div className="flex gap-1">
