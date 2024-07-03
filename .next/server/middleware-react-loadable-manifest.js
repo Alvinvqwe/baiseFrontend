@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/video/[vid]/page.tsx -> @/components/players/PlyrVideo\":{\"id\":\"app/video/[vid]/page.tsx -> @/components/players/PlyrVideo\",\"files\":[\"static/css/_app-pages-browser_components_players_PlyrVideo_tsx.css\",\"static/chunks/_app-pages-browser_components_players_PlyrVideo_tsx.js\"]}}"
