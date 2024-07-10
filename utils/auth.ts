@@ -1,69 +1,64 @@
 import NextAuth from "next-auth";
 import authConfig from "@/utils/auth.config";
+import { JWT } from "next-auth/jwt";
+import { Session } from "next-auth";
+import { loginReq } from "@/api/auth";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: "jwt", maxAge: 2 * 60 * 60 },
+  pages: {
+    signIn: "/auth/login",
+  },
+  secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 2 * 60 * 60,
+  },
   ...authConfig,
   callbacks: {
-    async jwt({ token, user }) {
-      // console.log("jwt: ", token, user);
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
-        return { token, user };
+        token.userId = user.userId;
+        token.email = user.email;
+        token.accessToken_key = user.accessToken_key;
       }
+      // console.log("jwt: ", token);
       return token;
     },
-    async session({ session, token }) {
-      // 将 token 中的信息存储在 session 中
-      console.log("session: ", session, token);
-
-      if (token.user) {
-        return { ...session, user: token.user };
-      }
+    async session({ session, token }: { session: Session; token: JWT }) {
+      session.user = {
+        ...session.user,
+        userId: token?.userId as string,
+        email: token.email as string,
+        accessToken_key: token.accessToken_key as string,
+      };
+      // console.log("session: ", session);
       return session;
     },
 
     async signIn({ credentials, account, email, user }) {
-      //console.log("signIn:", account, user);
+      // console.log("signIn:", account, user);
       if (account?.provider === "google") {
-        //console.log("google login in", account);
-        const res = await fetch(
-          process.env.NEXT_PUBLIC_BASE_URL + "/auth/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: account.token_type + " " + account.access_token,
-            },
-            body: JSON.stringify({
-              type: account?.provider,
-              email: user.email,
-              username: user.name,
-              avatar_url: user.image,
-            }),
-          }
+        const response = await loginReq(
+          account?.provider,
+          user?.email as string,
+          "",
+          user.name as string
         );
-        if (!res.ok) {
-          console.error("Failed to login:", res.status);
-          return false; // handle errors appropriately
+        if (response.code !== 0) {
+          console.log(response);
+          return false;
         }
-
-        const data = await res.json(); // properly reading the JSON response
-        console.log("google login response:", JSON.stringify(data));
-        //console.log("google login response:2", user);
-        if (data?.id) {
-          user.userId = data.id;
-        }
-        console.log("google login response:3", { ...user, userid: data.id });
-        //this.session?.user.userId = res.id;
+        user.userId = response.data[0].id;
+        user.accessToken_key = response.data[0].accessToken_key;
       } else if (account?.provider === "X") {
         console.log("x login in", account);
       } else {
-        console.log("normal login in", account, email, user);
+        console.log("normal login in", account, user, credentials?.user);
       }
       return true;
     },
     async redirect({ url, baseUrl }) {
+      // console.log("redirect");
       return baseUrl;
     },
   },

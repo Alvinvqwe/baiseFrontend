@@ -1,27 +1,30 @@
-import { FetchVideosResponse } from "@/types/api-types";
+import createAxiosInstance from "@/utils/AxiosInstance";
 export const fetchVideos = async (page: number) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/video/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ limit: 20, page }),
+  const axiosInstance = await createAxiosInstance();
+  const response = await axiosInstance.post("/video", {
+    limit: 20,
+    page,
   });
-  if (!response.ok) {
+  if (!response.data) {
     throw new Error("Failed to fetch videos");
   }
-  const data = await response.json();
-  return data;
+  const data = response.data;
+  console.log(data);
+  return {
+    data: [],
+    totalRecords: 0,
+    totalPages: 0,
+    currentPage: 0,
+  };
 };
 
 export const fetchTags = async () => {
-  const response = await fetch(
-    process.env.NEXT_PUBLIC_BASE_URL + "/video/tags"
-  );
-  if (!response.ok) {
+  const axiosInstance = await createAxiosInstance();
+  const response = await axiosInstance.get("/video/tags");
+  if (!response.data) {
     throw new Error("Failed to fetch tags");
   }
-  const data = await response.json();
+  const data = response.data;
   console.log(data);
   return data;
 };

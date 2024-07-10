@@ -85,7 +85,7 @@ const Header = () => {
             <Input
               type="search"
               placeholder="Search..."
-              className="w-full rounded-lg bg-border pl-8 py-2 sm:w-[300px] md:w-[400px] xl:w-[800px] text-black focus:bg-white bg-white"
+              className="w-full rounded-lg bg-border pl-8 py-2 sm:w-[80%] xl:w-[800px] text-black focus:bg-white bg-white"
             />
           </div>
           <div className="flex space-x-3 items-center justify-end">
@@ -102,10 +102,13 @@ const Header = () => {
               </DropdownMenuTrigger>
               {session && status === "authenticated" ? (
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuLabel>我的账户</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => router.push(`/user/${session.user?.userId}`)}
+                  >
+                    个人中心
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => signOut()}>
                     Logout

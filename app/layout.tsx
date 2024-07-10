@@ -4,10 +4,10 @@ import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import Content from "@/components/layout/content";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
-
 const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "BaiseHub",
@@ -28,6 +28,7 @@ export default function RootLayout({
             <Content>{children}</Content>
             <Footer />
           </div>
+          <Toaster />
         </body>
       </SessionProvider>
       <GoogleAnalytics gaId="G-CQHL0PZBRG" />

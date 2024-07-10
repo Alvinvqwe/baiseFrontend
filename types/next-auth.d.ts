@@ -7,5 +7,14 @@ declare module "next-auth" {
    */
   interface User {
     userId?: string;
+    accessToken_key?: string;
+  }
+  interface Session {
+    user: {
+      userId: string;
+      email: string;
+      id: string;
+      accessToken_key: string;
+    };
   }
 }

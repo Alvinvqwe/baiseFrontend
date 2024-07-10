@@ -17,6 +17,8 @@ declare module "react-hover-video-player" {
     restartOnPaused?: boolean;
     playBackSpeed?: number;
     preload?: "auto" | "metadata" | "none";
+    sizingMode?: "container" | "video" | "overlay" | "manual";
+    videoClassName?: string;
   }
 
   const HoverVideoPlayer: FC<HoverVideoPlayerProps>;

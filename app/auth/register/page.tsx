@@ -20,18 +20,14 @@ import {
 } from "@/components/ui/card";
 import * as z from "zod";
 import { RegisterSchema } from "@/schemas/index";
-import { signUp } from "@/utils/auth.config";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-interface responseData {
-  success: boolean;
-  message: string;
-  data: any;
-}
+import { useToast } from "@/components/ui/use-toast";
+import { registerReq } from "@/api/auth";
 
 const RegisterPage = () => {
   const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -43,19 +39,25 @@ const RegisterPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
-    console.log(values);
-    // Assume a function that handles user registration
-    try {
-      const res: responseData = await signUp(values); // 等待 signUp 的异步结果
-      if (res.success) {
-        alert(res.message);
-        router.push("/auth/login"); // 使用 useRouter 的 push 方法进行路由跳转
-      } else {
-        alert(res.message);
-      }
-    } catch (error) {
-      console.error("Registration error:", error);
-      alert("An error occurred during registration.");
+    const response = await registerReq(
+      "credentials",
+      values.email,
+      values.password,
+      values.username
+    );
+    if (response.code !== 0) {
+      toast({
+        description: response.message,
+        variant: "destructive",
+        duration: 800,
+      });
+    } else {
+      toast({
+        description: response.message || "注册成功",
+        variant: "default",
+        duration: 800,
+      });
+      router.push("/auth/login");
     }
   };
 

@@ -1,9 +1,11 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Social } from "@/components/auth/social";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+import createAxiosInstance from "@/utils/AxiosInstance";
 import {
   Form,
   FormControl,
@@ -24,8 +26,11 @@ import * as z from "zod";
 import { LoginSchema } from "@/schemas";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
+import { loginReq } from "@/api/auth";
 
 const LoginPage = () => {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -34,9 +39,27 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
-    signIn("credentials", { email: values.email, password: values.password });
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+    console.log(values.email, values.password);
+    const response = await loginReq(
+      "credentials",
+      values.email,
+      values.password
+    );
+    if (response.code !== 0) {
+      toast({
+        description: response.message,
+        variant: "destructive",
+        duration: 800,
+      });
+      return;
+    }
+    console.log(response.data[0]);
+    await signIn("credentials", {
+      userId: response.data[0].id,
+      email: response.data[0].email,
+      accessToken_key: response.data[0].accessToken_key,
+    });
   };
 
   return (

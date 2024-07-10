@@ -4,6 +4,7 @@ import { VideoGrid } from "@/components/video/VideoGrid";
 import { useState, useEffect } from "react";
 import { fetchTags } from "@/api/video";
 import { Skeleton } from "../components/ui/skeleton";
+import { useSession } from "next-auth/react";
 
 interface Tag {
   id: string;
@@ -11,8 +12,10 @@ interface Tag {
 }
 
 export default function Home() {
+  const { data: session } = useSession();
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
+  console.log("session", session);
 
   useEffect(() => {
     const getTags = async () => {

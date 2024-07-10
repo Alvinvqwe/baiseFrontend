@@ -13,12 +13,12 @@ import { Video } from "@/types/api-types";
 
 export const VideoCard: React.FC<{ video: Video }> = ({ video }) => {
   return (
-    <div className="relative w-full h-72 flex flex-col items-center justify-center">
-      <Suspense fallback={<Skeleton className="w-full h-full" />}>
+    <div className="w-full h-60 flex flex-col items-center justify-center">
+      <Suspense fallback={<Skeleton className="w-full h-full relative" />}>
         <Link
           href={`/video/${video.id}`}
           key={video.id}
-          className="w-full h-full relative overflow-hidden"
+          className="w-full h-full bg-black"
         >
           <HoverVideoPlayer
             videoSrc={
@@ -32,22 +32,20 @@ export const VideoCard: React.FC<{ video: Video }> = ({ video }) => {
                 alt="thumbnail"
                 // width={0}
                 // height={0}
-                // style={{ objectFit: "cover", width: "100%", height: "auto" }}
-                layout="fill"
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
+                fill
                 priority
                 unoptimized
               />
             }
             loadingOverlay={<Skeleton className="w-full h-full" />}
-            preload="auto"
+            preload="metadata"
             muted={true}
             loop={true}
             volume={0.8}
-            // className="w-full h-[200px]"
-            className="w-full max-h-full object-contain bg-white items-center justify-center" // Tailwind CSS 类
-            //style={{ objectFit: "contain" }} // 内联样式
+            className="w-full h-full bg-black" // Tailwind CSS 类
             restartOnPaused
+            sizingMode="container"
           />
         </Link>
       </Suspense>
